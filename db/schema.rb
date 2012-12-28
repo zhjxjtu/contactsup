@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227231721) do
+ActiveRecord::Schema.define(:version => 20121228141705) do
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "inviter_id"
+    t.integer  "invitee_id"
+    t.string   "email"
+    t.integer  "status",     :default => 101
+    t.string   "token"
+    t.string   "name"
+    t.string   "tel"
+    t.string   "message"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "contacts", ["invitee_id"], :name => "index_contacts_on_invitee_id"
+  add_index "contacts", ["inviter_id", "email"], :name => "index_contacts_on_inviter_id_and_email", :unique => true
+  add_index "contacts", ["inviter_id", "invitee_id"], :name => "index_contacts_on_inviter_id_and_invitee_id", :unique => true
+  add_index "contacts", ["inviter_id"], :name => "index_contacts_on_inviter_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"
