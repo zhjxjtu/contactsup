@@ -1,4 +1,10 @@
 Contactsup::Application.routes.draw do
+  get "sessions/new"
+
+  get "sessions/create"
+
+  get "sessions/destroy"
+
   get "webpages/landing"
 
   # The priority is based upon order of creation:
