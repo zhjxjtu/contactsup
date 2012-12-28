@@ -1,4 +1,22 @@
 Contactsup::Application.routes.draw do
+  get "users/new"
+
+  get "users/create"
+
+  get "users/show"
+
+  get "users/update"
+
+  get "users/destroy"
+
+  get "users/forgot_password"
+
+  get "users/update_password"
+
+  get "users/reset_password"
+
+  get "users/reset_password_view"
+
   get "sessions/new"
 
   get "sessions/create"
