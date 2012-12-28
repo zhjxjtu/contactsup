@@ -1,4 +1,22 @@
 Contactsup::Application.routes.draw do
+  get "contacts/index"
+
+  get "contacts/pending"
+
+  get "contacts/create"
+
+  get "contacts/accept_signup_view"
+
+  get "contacts/accept_signup"
+
+  get "contacts/accept_signin_view"
+
+  get "contacts/accept_signin"
+
+  get "contacts/block"
+
+  get "contacts/unblock"
+
   get "users/new"
 
   get "users/create"
