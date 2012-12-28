@@ -5,7 +5,7 @@ Contactsup::Application.routes.draw do
 
   # Sessions controller
   resources :sessions, only: [:new, :create, :destroy]
-  match '/signin',  to: 'sessions#new', via: :get
+  match '/login',  to: 'sessions#new', via: :get
   match '/signout', to: 'sessions#destroy', via: :delete
 
   # Users controller
@@ -21,8 +21,8 @@ Contactsup::Application.routes.draw do
   match '/pending_contacts',  to: 'contacts#pending', via: :get
   match '/accept_signup', to: 'contacts#accept_signup_view', via: :get
   match '/accept_signup', to: 'contacts#accept_signup', via: :put
-  match '/accept_signin', to: 'contacts#accept_signin_view', via: :get
-  match '/accept_signin', to: 'contacts#accept_signin', via: :put
+  match '/accept_login', to: 'contacts#accept_login_view', via: :get
+  match '/accept_login', to: 'contacts#accept_login', via: :put
   match '/block_contact', to: 'contacts#block', via: :post
   match '/unblock_contact', to: 'contacts#unblock', via: :delete
 

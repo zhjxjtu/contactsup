@@ -14,10 +14,10 @@ class ContactsController < ApplicationController
   def accept_signup
   end
 
-  def accept_signin_view
+  def accept_login_view
   end
 
-  def accept_signin
+  def accept_login
   end
 
   def block
