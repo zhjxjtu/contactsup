@@ -2,6 +2,9 @@ class Contact < ActiveRecord::Base
   attr_accessible :inviter_id, :invitee_id, :email, :status,
       			  :token, :name, :tel, :message
 
+  belongs_to :inviter, class_name: "User"
+  belongs_to :invitee, class_name: "User"
+
   before_save :downcase_email
   before_save :create_token
 
