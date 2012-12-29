@@ -1,5 +1,5 @@
 <% provide(:title, 'Sign up') %>
 <div class= "span4 offset4">
   <%= render 'users/signup_form' %>
-  <p><small>Alreday have an account? <%= link_to "Log in", signin_path %></small></p>
+  <%= render 'layouts/message_flash' %>
 </div>

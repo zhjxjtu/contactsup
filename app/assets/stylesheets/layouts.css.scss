@@ -8,3 +8,18 @@ body {
   padding-top: 7px;
   height: 28px;
 }
+
+#message_flash {  
+  position: absolute;
+  border: 2px solid;
+  width: 230px;
+  text-align: center;
+}
+
+.signup-login {
+  padding-left: 60px;
+  padding-top: 20px;
+  border: 1px solid #dddddd;
+  background-color: #eeffff;
+  border-radius: 5px;
+}
