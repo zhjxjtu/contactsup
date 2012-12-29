@@ -8,3 +8,17 @@ body {
   padding-top: 7px;
   height: 28px;
 }
+
+.flash-message {
+  
+}
+
+.field_with_errors input {
+    border: 2px solid red;
+}
+
+#form_flash {  
+  position: absolute;
+  border: 2px solid;
+  width: 230px;
+}
