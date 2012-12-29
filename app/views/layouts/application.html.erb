@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Contactsup | <%= yield(:title) %></title>
+  <title>ContactsUp | <%= yield(:title) %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -12,6 +12,7 @@
 <body>
   <%= render 'layouts/header' %>
   <div class="container">
+    <%= render 'layouts/message_flash' %>
   	<%= yield %>
   </div>
 </body>

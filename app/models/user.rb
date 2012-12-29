@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   validates :name, presence: true, length: { minimum: 2 }
-  validates :email_pref, format: { with: VALID_EMAIL_REGEX }
 
   private
 

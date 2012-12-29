@@ -1,2 +1,5 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<% provide(:title, 'Sign up') %>
+<div class= "span4 offset4">
+  <%= render 'users/signup_form' %>
+  <p><small>Alreday have an account? <%= link_to "Log in", signin_path %></small></p>
+</div>
