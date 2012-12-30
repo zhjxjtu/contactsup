@@ -1,2 +1,9 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<% provide(:title, 'Log in') %>
+<div class="row">
+  <div class= "span4 offset4">  	
+    <%= render 'login_flash' %>
+    <%= render 'login_form' %>
+    <P><h4>Or</h4></P>
+    <%= link_to "New User ?", signup_path, class: "btn btn-success btn-large" %>
+  </div>
+</div>
