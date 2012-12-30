@@ -6,7 +6,7 @@ Contactsup::Application.routes.draw do
   # Sessions controller
   resources :sessions, only: [:new, :create, :destroy]
   match '/login',  to: 'sessions#new', via: :get
-  match '/signout', to: 'sessions#destroy', via: :delete
+  match '/logout', to: 'sessions#destroy', via: :delete
 
   # Users controller
   resources :users, only: [:new, :create, :show, :update, :destroy]

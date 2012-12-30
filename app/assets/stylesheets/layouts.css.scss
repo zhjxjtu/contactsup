@@ -1,5 +1,7 @@
 @import "bootstrap";
 
+//Layouts
+
 body {
   padding-top: 60px;
 }
@@ -9,17 +11,29 @@ body {
   height: 28px;
 }
 
-#message_flash {  
+//Flash messages
+
+.flash-message {
+  position: absolute;
+}
+
+#signup_flash {  
   position: absolute;
   border: 2px solid;
   width: 230px;
-  text-align: center;
 }
 
-.signup-login {
-  padding-left: 60px;
-  padding-top: 20px;
-  border: 1px solid #dddddd;
-  background-color: #eeffff;
-  border-radius: 5px;
+#login_flash {  
+  text-align: center;
+  border: 2px solid;
+  width: 230px;
+  height: 30px;
 }
+
+//Form
+
+.field_with_errors input {
+  border: 1px solid red;
+}
+
+//Subav
