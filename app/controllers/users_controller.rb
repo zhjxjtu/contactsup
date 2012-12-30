@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to ContactsUp!"
       redirect_to contacts_path
     else
-      flash.now[:error] = @user.errors.full_messages[0]
+      flash.now[:error] = @user.errors.full_messages
       render 'new'
     end
   end

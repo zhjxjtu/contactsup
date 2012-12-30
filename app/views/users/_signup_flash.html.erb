@@ -1,0 +1,12 @@
+<% if flash.any? %>
+  <% flash.each do |key, value| %>
+    <div id="signup_flash" class="flash-message alert alert-<%= key %>">
+      <button id="flash_close" class="close" type="button">
+        <small>&times;</small>
+      </button>
+      <% value.each do |v| %>
+        <p><%= v %></p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
