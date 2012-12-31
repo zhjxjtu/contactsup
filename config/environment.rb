@@ -14,8 +14,8 @@ Contactsup::Application.configure do
     port: 587,
     domain: "gmail.com",
     authentication: "plain",
-    user_name: "focustest.2012@gmail.com",
-    password: "Fifafifa99@focus",
+    user_name: "info@contactsup.com",
+    password: "info@contactsup",
     enable_starttls_auto: true
   }
 
