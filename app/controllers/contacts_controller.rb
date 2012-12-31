@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     @contact.email = @contact.email.downcase
-    @invitee = User.find_by_email(@contact.email)
+    invitee = User.find_by_email(@contact.email)
     if add_self?(@contact.email)
       flash[:error] = "You can't add yourself"
       redirect_to contacts_path    
@@ -19,15 +19,15 @@ class ContactsController < ApplicationController
       redirect_to contacts_path
     elsif add_existing_inviter?(invitee)
       #accept_original_invitation(contact)
-      flash[:notice] = "New contact connected"    
-    elsif add_existing_invitee?(invitee)
-      flash[:success] = "Contact exists in pending list"
+      flash[:success] = "New contact connected"    
+    elsif add_existing_invitee?(@contact, invitee)
+      flash[:notice] = "Contact exists in pending list"
       redirect_to pendings_path
-      #send_invitation(@contact)    
+      send_invitation(@contact)    
     elsif add_new_contact(@contact, invitee)
       flash[:success] = "New contact added"
       redirect_to pendings_path
-      #send_invitation(@contact)
+      send_invitation(@contact)
     else
       flash[:error] = @contact.errors.full_messages[0]
       redirect_to pendings_path

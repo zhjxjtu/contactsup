@@ -46,8 +46,12 @@ module ApplicationHelper
     end
   end
 
-  def add_existing_invitee?(invitee)
-    current_user.invitees.exists?(invitee) || current_user.invitees.exists?(email: invitee.email)
+  def add_existing_invitee?(contact, invitee)
+    if invitee
+      current_user.invitees.exists?(invitee)
+    else
+      current_user.contacts.exists?(email: contact.email)
+    end
   end
 
   def add_new_contact(contact, invitee)
