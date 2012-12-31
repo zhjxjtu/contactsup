@@ -18,7 +18,7 @@ Contactsup::Application.routes.draw do
 
   # Contacts controller
   resources :contacts, only: [:index, :create]
-  match '/pending_contacts',  to: 'contacts#pending', via: :get
+  match '/pendings',  to: 'contacts#pendings', via: :get
   match '/accept_signup', to: 'contacts#accept_signup_view', via: :get
   match '/accept_signup', to: 'contacts#accept_signup', via: :put
   match '/accept_login', to: 'contacts#accept_login_view', via: :get
