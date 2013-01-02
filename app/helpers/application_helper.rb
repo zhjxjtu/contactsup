@@ -36,7 +36,7 @@ module ApplicationHelper
 
   def add_existing_contact?(invitee)
     if invitee
-      current_user.invitees.exists?(invitee) || current_user.inviters.exists?(invitee)
+      Contact.where("inviter_id = ? AND invitee_id = ? AND status >= ?", current_user.id, invitee.id, 200).exists? || Contact.where("inviter_id = ? AND invitee_id = ? AND status >= ?", invitee.id, current_user.id, 200).exists?
     end
   end
 
@@ -62,6 +62,10 @@ module ApplicationHelper
   def send_invitation(contact)
     # Delayed jobs: SystemEmails.delay.invite(contact)
     SystemEmails.invite(contact).deliver
+  end
+
+  def fill_existing_contacts(user)
+    Contact.where(email: user.email).update_all(invitee_id: user.id)
   end
 
 end

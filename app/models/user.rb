@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :contacts, foreign_key: "inviter_id", dependent: :destroy
   has_many :invitees, through: :contacts, source: :invitee
-  has_many :reverse_contacts, foreign_key: "invitee_id", class_name: "Contacts", dependent: :destroy
+  has_many :reverse_contacts, foreign_key: "invitee_id", class_name: "Contact", dependent: :destroy
   has_many :inviters, through: :reverse_contacts, source: :inviter
 
   before_save :downcase_emails

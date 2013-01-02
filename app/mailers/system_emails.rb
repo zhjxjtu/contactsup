@@ -4,7 +4,7 @@ class SystemEmails < ActionMailer::Base
 
   def invite(contact)
     @contact = contact
-    mail to: @contact.email, from: @contact.inviter.name, subject: "Hi, may I have your contact information please?"
+    mail to: @contact.email, from: @contact.inviter.name, subject: "My contact information"
   end
 
 end

@@ -1,3 +1,15 @@
-Hi Bud,
-
-This is the test email from ContactsUp.
+<p>Dear friend,</p>
+<p>This is my newest contact information</p>
+<ul>
+  <li>Email: <%= @contact.inviter.email %> </li>
+  <% if !@contact.inviter.tel_pref.nil? %>
+    <li>
+  	  Phone: <%= @contact.inviter.tel_pref %>
+  	</li>
+  <% end %>
+</ul>
+<p>I would appreciate if you could click the link below to add your contact information into my address book.</p>
+<p><%= accept_signup_url %>?token=<%= @contact.token %></p>
+<br>
+<p><%= @contact.inviter.name %></p>
+<p><%= @contact.inviter.title %>, <%= @contact.inviter.org %></p>

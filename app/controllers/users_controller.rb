@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      sign_in(@user, params[:page][:stay])
+      fill_existing_contacts(@user)
+      log_in(@user, params[:page][:stay])
       flash[:success] = "Welcome to ContactsUp!"
       redirect_to contacts_path
     else
