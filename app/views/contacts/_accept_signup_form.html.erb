@@ -1,0 +1,22 @@
+<%= form_for @user, url: '/accept_signup' do |f| %>
+  <label><h2>You information</h2></label>
+  <label><h5>will be sent to <%= @contact.inviter.name %></h5></label>
+  <small><%= link_to "ContactsUp user? Log in to send information", "#{accept_login_path}?token=#{@contact.token}" %></small>
+  <br><br>
+  <%= hidden_field :page, :token, value: params[:token] %>
+  <%= f.text_field :email, class: "input-xlarge", placeholder: "Email (Required)", value: @contact.email %>
+  <%= f.text_field :name, class: "input-xlarge", placeholder: "Full Name (Required)" %>
+  <%= f.text_field :tel_pref, class: "input-xlarge", placeholder: "Primary phone number" %>
+  <%= f.text_field :org, class: "input-xlarge", placeholder: "Company / Orgnization" %>
+  <%= f.text_field :title, class: "input-xlarge", placeholder: "Title" %>
+  <%= f.password_field :password, class: "input-large", placeholder: "Set password (Required)" %>
+  <%= f.password_field :password_confirmation, class: "input-large", placeholder: "Re-type password" %>
+  <label class="checkbox">
+  	<%= check_box("page", "stay", { checked: true }, "yes", "no") %>
+  	<small>Remember me &nbsp;&nbsp;|&nbsp;&nbsp;</small>
+    <small>
+      <a href="#" rel="popover" data-placement="right" data-content="Setting password help you protect, update and retrieve your information" data-original-title="Protect your privacy">Why password</a>
+    </small>
+  </label>
+  <%= f.submit "Confirm", class: "btn btn-large btn-success" %>
+<% end %>

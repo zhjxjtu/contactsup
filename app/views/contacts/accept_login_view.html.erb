@@ -1,2 +1,7 @@
-<h1>Contacts#accept_signin_view</h1>
-<p>Find me in app/views/contacts/accept_signin_view.html.erb</p>
+<% provide(:title, 'Add Info | Log in') %>
+<div class="row">
+  <div class= "span4 offset4">
+  	<%= render 'sessions/login_flash' %>
+    <%= render 'contacts/accept_login_form' %>
+  </div>
+</div>

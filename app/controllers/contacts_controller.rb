@@ -14,7 +14,7 @@ class ContactsController < ApplicationController
     end
     @invitee = User.find_by_email(@contact.email)
     if add_self?(@contact.email)
-      flash[:error] = "You can't add yourself"
+      flash[:error] = "Can't add yourself"
       redirect_to contacts_path    
     elsif add_existing_contact?(@invitee)
       flash[:notice] = "Contact exists"
@@ -37,15 +37,58 @@ class ContactsController < ApplicationController
   end
 
   def accept_signup_view
+    @user = User.new
+    @contact = Contact.find_by_token(params[:token])
+    if @contact.nil?
+      flash[:error] = "Ooops...The link has expired"
+      redirect_to root_path
+    elsif logged_in?
+      if current_user.id == @contact.invitee_id
+        set_contact_status(@contact, 210)
+        flash[:success] = "Connected with " + @contact.inviter.name
+        redirect_to contacts_path
+      else
+        log_out        
+      end
+    end
+    redirect_to accept_login_path + "?token=" + @contact.token unless @contact.invitee_id.blank?
   end
 
   def accept_signup
+    @user = User.new(params[:user])
+    @contact = Contact.find_by_token(params[:page][:token])
+    if @user.save
+      fill_existing_contacts(@user)
+      log_in(@user, params[:page][:stay])
+      set_contact_status(@contact, 210)
+      flash[:success] = "New contact connected"
+      redirect_to contacts_path
+    else
+      flash[:error] = @user.errors.full_messages
+      redirect_to accept_signup_path + "?token=" + @contact.token
+    end
   end
 
   def accept_login_view
+    @contact = Contact.find_by_token(params[:token])
+    if @contact.nil?
+      flash[:error] = "Ooops...The link has expired"
+      redirect_to root_path
+    end
   end
 
   def accept_login
+    @user = User.find_by_email(params[:session][:email].downcase)
+    @contact = Contact.find_by_token(params[:page][:token])
+    if @user && @user.authenticate(params[:session][:password])
+      log_in(@user, params[:stay])
+      set_contact_status(@contact, 210)
+      flash[:success] = 'New contact connected'
+      redirect_to contacts_path
+    else
+      flash[:error] = 'Invalid Email or Password'
+      redirect_to accept_login_path + "?token=" + @contact.token
+    end
   end
 
   def block

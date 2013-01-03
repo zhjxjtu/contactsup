@@ -68,4 +68,8 @@ module ApplicationHelper
     Contact.where(email: user.email).update_all(invitee_id: user.id)
   end
 
+  def set_contact_status(contact, status)
+    contact.update_attribute(:status, status)
+  end
+
 end
