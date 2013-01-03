@@ -40,10 +40,15 @@ module ApplicationHelper
     end
   end
 
-  def add_existing_inviter?(invitee)
-    if invitee
-      current_user.inviters.exists?(invitee)
+  def add_existing_inviter?(inviter)
+    if inviter
+      current_user.inviters.exists?(inviter)
     end
+  end
+
+  def accept_original_invitation(inviter)
+    contact = Contact.find_by_inviter_id_and_invitee_id(inviter.id, current_user.id)
+    set_contact_status(contact, 210)
   end
 
   def add_existing_invitee?(contact, invitee)

@@ -20,8 +20,9 @@ class ContactsController < ApplicationController
       flash[:notice] = "Contact exists"
       redirect_to contacts_path
     elsif add_existing_inviter?(@invitee)
-      #accept_original_invitation(contact)
-      flash[:success] = "New contact connected"    
+      accept_original_invitation(@invitee)
+      flash[:success] = "New contact connected"
+      redirect_to contacts_path
     elsif add_existing_invitee?(@contact, @invitee)
       flash[:notice] = "Contact exists in pending list"
       redirect_to pendings_path
@@ -48,10 +49,12 @@ class ContactsController < ApplicationController
         flash[:success] = "Connected with " + @contact.inviter.name
         redirect_to contacts_path
       else
-        log_out        
-      end
+        log_out
+        redirect_to accept_login_path + "?token=" + @contact.token unless @contact.invitee_id.blank?        
+      end  
+    else
+      redirect_to accept_login_path + "?token=" + @contact.token unless @contact.invitee_id.blank?
     end
-    redirect_to accept_login_path + "?token=" + @contact.token unless @contact.invitee_id.blank?
   end
 
   def accept_signup
