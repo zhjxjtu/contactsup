@@ -77,4 +77,8 @@ module ApplicationHelper
     contact.update_attribute(:status, status)
   end
 
+  def get_connected_contacts(user)
+    Contact.where("inviter_id = ? AND status >= ? ", user.id, 200).pluck(:invitee_id) + Contact.where("invitee_id = ? AND status >= ? ", user.id, 200).pluck(:inviter_id)
+  end
+
 end

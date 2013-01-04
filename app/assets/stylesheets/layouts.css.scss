@@ -28,10 +28,37 @@ body {
   width: 230px;
 }
 
-//Form
+//Form & Table
 
 .field_with_errors input {
   border: 1px solid red;
+}
+
+.div-table {
+  font-size: 12px;
+  max-height: 450px;
+  overflow: auto;
+  background-color: #eeffff;
+  border: 1px solid #ddeeee;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.cursor-enable{
+  cursor: pointer;
+}
+
+.cursor-enable:hover {
+  color: grey;
+  font-size: 14px;
+}
+
+.tablesorter-headerAsc {
+  cursor: s-resize;
+}
+
+.tablesorter-headerDesc {
+  cursor: n-resize;
 }
 
 //Subav

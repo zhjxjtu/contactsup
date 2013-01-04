@@ -1,16 +1,15 @@
 <nav>
-
 <ul class="nav nav-pills" id="subnav">
-  <li>
-    <a href="#new_contact_modal" data-toggle="modal" rel="tooltip" title="Add new contact">
-    <i class="icon-plus"></i>
-    </a>
-  </li>
   <li <% if yield(:sub_title) == "Contacts" %>class="active"<% end %>>
     <%= link_to '<i class="icon-list-alt"></i>'.html_safe, contacts_path, rel: "tooltip", title: "Your contacts" %>
   </li>
   <li <% if yield(:sub_title) == "Pendings" %>class="active"<% end %>>
     <%= link_to '<i class="icon-envelope"></i>'.html_safe, pendings_path, rel: "tooltip", title: "Pending contacts" %>
+  </li>
+  <li>
+    <a href="#new_contact_modal" data-toggle="modal" rel="tooltip" title="Add new contact">
+    <i class="icon-plus"></i>
+    </a>
   </li>
   <% if yield(:title) == "Account" %>
     <li class="active pull-right">

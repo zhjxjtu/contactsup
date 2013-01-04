@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
   def index
     @contact = Contact.new
+    @contacts = get_connected_contacts(current_user)
   end
 
   def pendings

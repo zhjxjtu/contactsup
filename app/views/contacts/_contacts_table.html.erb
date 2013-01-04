@@ -1,0 +1,49 @@
+<% if @contacts.any? %>
+<div class="div-table">
+<table id="contacts_table" class="table tablesorter">
+  <thead>
+    <tr>
+      <th class="{sorter: false}">Contacts </th>
+    	<th class="cursor-enable">Name</th>
+      <th class="cursor-enable">Email</th>
+      <th class="cursor-enable">Phone Number</th>
+      <th class="cursor-enable">Title</th>
+      <th class="cursor-enable">Company/Org</th>
+      <th class="cursor-enable">Info last updated at</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <% @contacts.each do |c| %>
+      <% contact = User.find(c) %>
+      <tr>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-mini btn-primary">vCard</button>
+            <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Other Actions", '#' %></li>
+            </ul>
+          </div>          
+        </td>
+        <td><%= contact.name %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.tel_pref %></td>
+        <td><%= contact.title %></td>
+        <td><%= contact.org %></td>        
+        <td><%= contact.updated_at.to_formatted_s(:db) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<div>
+  <p><h5>&nbsp;&nbsp;&nbsp;Total Contacts: <%= @contacts.count %></h5></p>
+</div>
+<% else %>
+  <p><h4>You don't have contact</h4></p><br>
+  <a href="#new_contact_modal" role="button" class="btn btn-primary" data-toggle="modal">
+    Click to add
+  </a>
+<% end %>
