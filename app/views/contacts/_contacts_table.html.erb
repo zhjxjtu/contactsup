@@ -4,12 +4,12 @@
   <thead>
     <tr>
       <th class="{sorter: false}">Contacts </th>
-    	<th class="cursor-enable">Name</th>
-      <th class="cursor-enable">Email</th>
-      <th class="cursor-enable">Phone Number</th>
-      <th class="cursor-enable">Title</th>
-      <th class="cursor-enable">Company/Org</th>
-      <th class="cursor-enable">Info last updated at</th>      
+    	<th class="cursor-enable" rel="tooltip" title="Sort by name">Name</th>
+      <th class="cursor-enable" rel="tooltip" title="Sort by email">Email</th>
+      <th class="cursor-enable" rel="tooltip" title="Sort by phone number">Phone Number</th>
+      <th class="cursor-enable" rel="tooltip" title="Sort by Title">Title</th>
+      <th class="cursor-enable" rel="tooltip" title="Sort by Company/Org">Company/Org</th>
+      <th class="cursor-enable" rel="tooltip" title="Sort by last update time">Info last updated at</th>      
     </tr>
   </thead>
   <tbody>
@@ -41,6 +41,27 @@
 <div>
   <p><h5>&nbsp;&nbsp;&nbsp;Total Contacts: <%= @contacts.count %></h5></p>
 </div>
+<% if @new_contacts.any? %>
+<div id="contactsUpdateModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactsUpdateModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 id="contactsUpdateModalLabel">Updates</h4>
+  </div>
+  <div class="modal-body modal-table">
+    <% @new_contacts.each do |contact| %>
+      <p>        
+        <%= contact.updated_at.to_date %>: 
+        <strong class="text-info"><%= contact.invitee.name %></strong>'s contact information received
+      </p>
+    <% end %>
+    <% @new_contacts.update_all(status: 200) %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success btn-large" data-dismiss="modal" aria-hidden="true">Confirm</button>
+  </div>
+</div>
+<% end %>
+
 <% else %>
   <p><h4>You don't have contact</h4></p><br>
   <a href="#new_contact_modal" role="button" class="btn btn-primary" data-toggle="modal">

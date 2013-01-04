@@ -44,16 +44,11 @@ body {
   border-radius: 5px;
 }
 
-.cursor-enable{
-  cursor: pointer;
-}
-
 .cursor-enable:hover {
-  color: grey;
-  font-size: 14px;
+  color: darkgrey;
 }
 
-.tablesorter-headerAsc {
+.cursor-enable{
   cursor: s-resize;
 }
 
@@ -68,4 +63,11 @@ body {
   border: none;
   border-radius: 10px;
   width: 250px;
+}
+
+//Modal
+
+.modal-table {
+  max-height: 200px;
+  overflow: auto;
 }

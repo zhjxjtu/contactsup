@@ -2,6 +2,7 @@ class ContactsController < ApplicationController
   def index
     @contact = Contact.new
     @contacts = get_connected_contacts(current_user)
+    @new_contacts = get_new_contacts(current_user)
   end
 
   def pendings
@@ -17,7 +18,7 @@ class ContactsController < ApplicationController
     if add_self?(@contact.email)
       flash[:error] = "Can't add yourself"
       redirect_to contacts_path    
-    elsif add_existing_contact?(@invitee)
+    elsif add_connected_contact?(@invitee)
       flash[:notice] = "Contact exists"
       redirect_to contacts_path
     elsif add_existing_inviter?(@invitee)
@@ -46,7 +47,7 @@ class ContactsController < ApplicationController
       redirect_to root_path
     elsif logged_in?
       if current_user.id == @contact.invitee_id
-        set_contact_status(@contact, 210)
+        set_contact_status(@contact, 201)
         flash[:success] = "Connected with " + @contact.inviter.name
         redirect_to contacts_path
       else
@@ -64,7 +65,7 @@ class ContactsController < ApplicationController
     if @user.save
       fill_existing_contacts(@user)
       log_in(@user, params[:page][:stay])
-      set_contact_status(@contact, 210)
+      set_contact_status(@contact, 201)
       flash[:success] = "New contact connected"
       redirect_to contacts_path
     else
@@ -86,7 +87,7 @@ class ContactsController < ApplicationController
     @contact = Contact.find_by_token(params[:page][:token])
     if @user && @user.authenticate(params[:session][:password])
       log_in(@user, params[:stay])
-      set_contact_status(@contact, 210)
+      set_contact_status(@contact, 201)
       flash[:success] = 'New contact connected'
       redirect_to contacts_path
     else

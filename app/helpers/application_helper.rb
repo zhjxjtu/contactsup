@@ -34,7 +34,7 @@ module ApplicationHelper
     email == current_user.email
   end
 
-  def add_existing_contact?(invitee)
+  def add_connected_contact?(invitee)
     if invitee
       Contact.where("inviter_id = ? AND invitee_id = ? AND status >= ?", current_user.id, invitee.id, 200).exists? || Contact.where("inviter_id = ? AND invitee_id = ? AND status >= ?", invitee.id, current_user.id, 200).exists?
     end
@@ -48,7 +48,7 @@ module ApplicationHelper
 
   def accept_original_invitation(inviter)
     contact = Contact.find_by_inviter_id_and_invitee_id(inviter.id, current_user.id)
-    set_contact_status(contact, 210)
+    set_contact_status(contact, 201)
   end
 
   def add_existing_invitee?(contact, invitee)
@@ -79,6 +79,10 @@ module ApplicationHelper
 
   def get_connected_contacts(user)
     Contact.where("inviter_id = ? AND status >= ? ", user.id, 200).pluck(:invitee_id) + Contact.where("invitee_id = ? AND status >= ? ", user.id, 200).pluck(:inviter_id)
+  end
+
+  def get_new_contacts(user)
+    contacts = user.contacts.where(status: 201).order("updated_at DESC")
   end
 
 end
