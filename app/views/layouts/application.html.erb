@@ -12,16 +12,6 @@
 <body>
   <%= render 'layouts/header' %>
   <div class="container">
-    <% if logged_in? %>
-      <div class="row">
-        <div class="span4 offset4">
-          <%= render 'layouts/subnav_flash' %>
-        </div>
-        <div class="span12">
-          <%= render 'layouts/subnav' %>
-        </div>
-      </div>
-    <% end %>
   	<%= yield %>
   </div>
 </body>

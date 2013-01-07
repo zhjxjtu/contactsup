@@ -1,81 +1,84 @@
 <% if @contacts.any? %>
-<div class="div-table">
-<table id="contacts_table" class="table tablesorter">
-  <thead>
-    <tr>
-      <th class="{sorter: false}">Contacts </th>
-    	<th class="cursor-enable" rel="tooltip" title="Sort by name">Name</th>
-      <th class="cursor-enable" rel="tooltip" title="Sort by email">Email</th>
-      <th class="cursor-enable" rel="tooltip" title="Sort by phone number">Phone Number</th>
-      <th class="cursor-enable" rel="tooltip" title="Sort by Title">Title</th>
-      <th class="cursor-enable" rel="tooltip" title="Sort by Company/Org">Company/Org</th>
-      <th class="cursor-enable" rel="tooltip" title="Sort by last update time">Info last updated at</th>      
-    </tr>
-  </thead>
-  <tbody>
-    <% @contacts.each do |c| %>
-      <% contact = User.find(c) %>
-      <tr>
-        <td>
-          <div class="btn-group">
-            <button type="button" class="btn btn-mini btn-primary">vCard</button>
-            <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Other Actions", '#' %></li>
-            </ul>
-          </div>          
-        </td>
-        <td><%= contact.name %></td>
-        <td><%= contact.email %></td>
-        <td><%= contact.tel_pref %></td>
-        <td><%= contact.title %></td>
-        <td><%= contact.org %></td>        
-        <td><%= contact.updated_at.to_formatted_s(:db) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-<div>
-  <p><h5>&nbsp;&nbsp;&nbsp;Total Contacts: <%= @contacts.count %></h5></p>
-</div>
-<% if @new_contacts.any? %>
-<div id="contactsUpdateModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactsUpdateModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h4 id="contactsUpdateModalLabel">Contacts update</h4>
+  <div class="div-table">
+    <p>
+      <a href="#new_contact_modal" data-toggle="modal" rel="tooltip" title="Add a contact">
+        <i class="icon-plus"></i>
+        Add
+      </a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="#" rel="tooltip" title="Requests">
+        <i class="icon-envelope"></i>
+        (5)
+      </a>
+    </p>
+    <div class="div-table-inner">
+      <table id="contacts_table" class="table tablesorter table-bordered">
+        <thead>
+          <tr>
+            <th class="cursor-enable">Name</th>
+            <th class="cursor-enable">Company/Org</th>
+            <th class="cursor-enable">Email</th>
+            <th class="cursor-enable">Phone Number</th>
+            <th class="cursor-enable">Last Updated</th>   
+          </tr>
+        </thead>
+        <tbody>
+          <% @contacts.each do |c| %>
+            <% contact = User.find(c) %>
+            <tr>
+              <td><%= contact.name %></td>
+              <td><%= contact.org %></td>  
+              <td><%= contact.email %></td>
+              <td><%= contact.tel_pref %></td>
+              <td><%= contact.updated_at.to_date %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <p><strong>Total Contacts: <%= @contacts.count %></strong></p>
   </div>
-  <div class="modal-body modal-table">
-    <% @new_contacts.each do |contact| %>
-      <p>        
-        <%= contact.updated_at.to_date %>:
-        <div class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
-            <%= contact.invitee.name %>
-          </a>
-          became your contact
-          <ul class="dropdown-menu dropdown-in-modal">
-            <li><strong><%= contact.invitee.name %></strong></li>
-            <li class="divider"></li>
-            <p><strong>Email:</strong> <%= contact.invitee.email %></p>
-            <p><strong>Phone:</strong> <%= contact.invitee.tel_pref %></p>
-          </ul>
-        </div>
-      </p>
-    <% end %>
-    <% @new_contacts.update_all(status: 200) %>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Confirm</button>
-  </div>
-</div>
-<% end %>
-
 <% else %>
   <p><h4>You don't have contact</h4></p><br>
   <a href="#new_contact_modal" role="button" class="btn btn-primary" data-toggle="modal">
     Click to add
   </a>
 <% end %>
+
+<div id="new_contact_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="new_contact_label" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 id="new_contact_label">Add new contact</h4>
+  </div>
+  <div class="modal-body">
+    <div class="accordion-group">
+      <div id="collapseOne" class="accordion-body collapse in">
+        <div class="accordion-inner">
+          <%= form_for @contact do |f| %>
+            <%= f.hidden_field :inviter_id, value: current_user.id %>
+            <%= f.text_field :email, class: "input-xlarge", placeholder: "Email" %>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+          Optional Information
+        </a>
+      </div>
+      <div id="collapseTwo" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <%= f.text_field :name, class: "input-xlarge", placeholder: "Name" %><br>
+          <%= f.text_field :tel, class: "input-xlarge", placeholder: "Phone Number" %><br>
+          <%= f.text_field :org, class: "input-xlarge", placeholder: "Company/Org" %> 
+        </div>
+      </div>
+    </div>            
+  </div>
+  <div class="modal-footer">
+    <%= f.submit "Save", class: "btn btn-primary btn-large pull-left" %>
+    <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Cancel</button>    
+    <% end %>
+  </div>
+</div>

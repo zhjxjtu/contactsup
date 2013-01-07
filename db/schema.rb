@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20121228141705) do
     t.string   "token"
     t.string   "name"
     t.string   "tel"
-    t.string   "message"
+    t.string   "org"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end

@@ -31,17 +31,35 @@ body {
 //Form & Table
 
 .field_with_errors input {
-  border: 1px solid red;
+  border: 1px solid #D00;
+}
+
+.field_with_errors .message{ 
+  color: #D00;
+  padding-left: 10px;
 }
 
 .div-table {
   font-size: 12px;
+  border-radius: 5px;
+  background-color: #dddddd;
+  padding: 10px;
+  border: 1px solid #cccccc;
+}
+
+.div-table-inner {
   max-height: 450px;
   overflow: auto;
-  background-color: #eeffff;
-  border: 1px solid #ddeeee;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+}
+
+.div-table thead{
+  color: white;
+  background-color: #4f81bd;
+  font-size: 14px;
+}
+
+#contacts_table{
+  background-color: white;
 }
 
 .cursor-enable:hover {
@@ -56,11 +74,6 @@ body {
   cursor: n-resize;
 }
 
-.field_with_errors .message{ 
-  color: #D00;
-  padding-left: 10px;
-}
-
 //Subav
 
 #subnav_flash {  
@@ -71,11 +84,6 @@ body {
 }
 
 //Modal
-
-.modal-table {
-  max-height: 280px;
-  overflow: auto;
-}
 
 .dropdown-in-modal {
   padding-left:10px;

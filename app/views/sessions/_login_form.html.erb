@@ -1,4 +1,4 @@
-<%= form_for :session, url: sessions_path do |f| %>
+<%= form_for :session, url: sessions_path, html: {class: "form-inline"} do |f| %>
   <label><h2>Log in</h2></label>
   <p>
     <%= f.text_field :email, class: "input-xlarge", placeholder: "Email" %>

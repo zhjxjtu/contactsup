@@ -1,6 +1,6 @@
 class Contact < ActiveRecord::Base
   attr_accessible :inviter_id, :invitee_id, :email, :status,
-      			  :token, :name, :tel, :message
+      			  :token, :name, :tel, :org
 
   belongs_to :inviter, class_name: "User"
   belongs_to :invitee, class_name: "User"
