@@ -45,19 +45,30 @@
 <div id="contactsUpdateModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactsUpdateModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h4 id="contactsUpdateModalLabel">Updates</h4>
+    <h4 id="contactsUpdateModalLabel">Contacts update</h4>
   </div>
   <div class="modal-body modal-table">
     <% @new_contacts.each do |contact| %>
       <p>        
-        <%= contact.updated_at.to_date %>: 
-        <strong class="text-info"><%= contact.invitee.name %></strong>'s contact information received
+        <%= contact.updated_at.to_date %>:
+        <div class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+            <%= contact.invitee.name %>
+          </a>
+          became your contact
+          <ul class="dropdown-menu dropdown-in-modal">
+            <li><strong><%= contact.invitee.name %></strong></li>
+            <li class="divider"></li>
+            <p><strong>Email:</strong> <%= contact.invitee.email %></p>
+            <p><strong>Phone:</strong> <%= contact.invitee.tel_pref %></p>
+          </ul>
+        </div>
       </p>
     <% end %>
     <% @new_contacts.update_all(status: 200) %>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-success btn-large" data-dismiss="modal" aria-hidden="true">Confirm</button>
+    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Confirm</button>
   </div>
 </div>
 <% end %>

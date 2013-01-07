@@ -1,12 +1,26 @@
-<%= form_for @user, url: '/users' do |f| %>
-  <label><h2>Sign up</h2></label><br>
-  <%= f.text_field :email, class: "input-xlarge", placeholder: "Email (Required)" %>
-  <%= f.text_field :name, class: "input-xlarge", placeholder: "Full Name (Required)" %>
-  <%= f.password_field :password, class: "input-xlarge", placeholder: "Password" %>
-  <%= f.password_field :password_confirmation, class: "input-xlarge", placeholder: "Re-type password" %>
-  <label class="checkbox">
-  	<%= check_box("page", "stay", { checked: true }, "yes", "no") %>
-  	<small>Keep me logged in</small>  	
-  </label>
-  <%= f.submit "Sign up", class: "btn btn-large btn-success" %>
+<%= form_for @user, url: '/users', html: {class: "form-inline"}, validate: true do |f| %>
+  <p>
+    <label><h2>Sign up</h2></label>
+  </p>
+  <p>
+    <%= f.text_field :email, class: "input-xlarge", placeholder: "Email" %>
+  </p>
+  <p>
+    <%= f.text_field :name, class: "input-xlarge", placeholder: "Full Name" %>
+  </p>
+  <p>
+    <%= f.password_field :password, class: "input-xlarge", placeholder: "Password" %>
+  </p>
+  <p>
+    <%= f.password_field :password_confirmation, class: "input-xlarge", placeholder: "Re-type password" %>
+  </p>
+  <p>
+    <label class="checkbox">
+    	<%= check_box("page", "stay", { checked: true }, "yes", "no") %>
+    	<small>Keep me logged in</small>  	
+    </label>
+  </p>
+  <p>
+    <%= f.submit "Sign up", class: "btn btn-large btn-success" %>
+  </p>
 <% end %>

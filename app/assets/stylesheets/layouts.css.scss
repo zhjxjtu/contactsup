@@ -13,7 +13,7 @@ body {
 
 //Flash messages
 
-.flash-message {
+.subnav_flash {
   position: absolute;
 }
 
@@ -56,6 +56,11 @@ body {
   cursor: n-resize;
 }
 
+.field_with_errors .message{ 
+  color: #D00;
+  padding-left: 10px;
+}
+
 //Subav
 
 #subnav_flash {  
@@ -68,6 +73,11 @@ body {
 //Modal
 
 .modal-table {
-  max-height: 200px;
+  max-height: 280px;
   overflow: auto;
+}
+
+.dropdown-in-modal {
+  padding-left:10px;
+  padding-right:10px;
 }
