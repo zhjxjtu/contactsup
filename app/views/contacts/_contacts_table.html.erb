@@ -11,14 +11,24 @@
           </tr>
         </thead>
         <tbody>
-          <% @contacts.each do |c| %>
-            <% contact = User.find(c) %>
-            <tr>
-              <td><%= contact.name %></td>
-              <td><%= contact.org %></td>  
-              <td><%= contact.email %></td>
-              <td><%= contact.tel_pref %></td>
-            </tr>
+          <% @contacts.each do |contact| %>
+            <% case contact.status %>
+            <% when 100 .. 101 %>
+              <tr class="error">
+                <td><%= contact.name %></td>
+                <td><%= contact.org %></td>  
+                <td><%= contact.email %></td>
+                <td><%= contact.tel %></td>
+              </tr>
+            <% when 200 .. 211 %>
+              <% user = User.find(contact.invitee_id) %>
+                <tr>
+                  <td><%= user.name %></td>
+                  <td><%= user.org %></td>  
+                  <td><%= user.email_pref %></td>
+                  <td><%= user.tel_pref %></td>
+                </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

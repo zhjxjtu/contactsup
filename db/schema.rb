@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228141705) do
+ActiveRecord::Schema.define(:version => 20130108193454) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "inviter_id"
@@ -30,6 +30,22 @@ ActiveRecord::Schema.define(:version => 20121228141705) do
   add_index "contacts", ["inviter_id", "email"], :name => "index_contacts_on_inviter_id_and_email", :unique => true
   add_index "contacts", ["inviter_id", "invitee_id"], :name => "index_contacts_on_inviter_id_and_invitee_id", :unique => true
   add_index "contacts", ["inviter_id"], :name => "index_contacts_on_inviter_id"
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "users", :force => true do |t|
     t.string   "email"

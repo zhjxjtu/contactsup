@@ -65,8 +65,8 @@ module ApplicationHelper
   end
 
   def send_invitation(contact)
-    # Delayed jobs: SystemEmails.delay.invite(contact)
-    SystemEmails.invite(contact).deliver
+    SystemEmails.delay.invite(contact)
+    # No Delayed jobs: SystemEmails.invite(contact).deliver
   end
 
   def fill_existing_contacts(user)
@@ -75,14 +75,6 @@ module ApplicationHelper
 
   def set_contact_status(contact, status)
     contact.update_attribute(:status, status)
-  end
-
-  def get_connected_contacts(user)
-    Contact.where("inviter_id = ? AND status >= ? ", user.id, 200).pluck(:invitee_id) + Contact.where("invitee_id = ? AND status >= ? ", user.id, 200).pluck(:inviter_id)
-  end
-
-  def get_new_contacts(user)
-    contacts = user.contacts.where(status: 201).order("updated_at DESC")
   end
 
 end
