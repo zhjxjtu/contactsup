@@ -1,16 +1,5 @@
 <% if @contacts.any? %>
   <div class="div-table">
-    <p>
-      <a href="#new_contact_modal" data-toggle="modal" rel="tooltip" title="Add a contact">
-        <i class="icon-plus"></i>
-        Add
-      </a>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <a href="#" rel="tooltip" title="Requests">
-        <i class="icon-envelope"></i>
-        (5)
-      </a>
-    </p>
     <div class="div-table-inner">
       <table id="contacts_table" class="table tablesorter table-bordered">
         <thead>
@@ -18,8 +7,7 @@
             <th class="cursor-enable">Name</th>
             <th class="cursor-enable">Company/Org</th>
             <th class="cursor-enable">Email</th>
-            <th class="cursor-enable">Phone Number</th>
-            <th class="cursor-enable">Last Updated</th>   
+            <th class="cursor-enable">Phone Number</th> 
           </tr>
         </thead>
         <tbody>
@@ -30,55 +18,10 @@
               <td><%= contact.org %></td>  
               <td><%= contact.email %></td>
               <td><%= contact.tel_pref %></td>
-              <td><%= contact.updated_at.to_date %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-    </div>
-    <br>
-    <p><strong>Total Contacts: <%= @contacts.count %></strong></p>
+    </div>    
   </div>
-<% else %>
-  <p><h4>You don't have contact</h4></p><br>
-  <a href="#new_contact_modal" role="button" class="btn btn-primary" data-toggle="modal">
-    Click to add
-  </a>
 <% end %>
-
-<div id="new_contact_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="new_contact_label" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h4 id="new_contact_label">Add new contact</h4>
-  </div>
-  <div class="modal-body">
-    <div class="accordion-group">
-      <div id="collapseOne" class="accordion-body collapse in">
-        <div class="accordion-inner">
-          <%= form_for @contact do |f| %>
-            <%= f.hidden_field :inviter_id, value: current_user.id %>
-            <%= f.text_field :email, class: "input-xlarge", placeholder: "Email" %>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-          Optional Information
-        </a>
-      </div>
-      <div id="collapseTwo" class="accordion-body collapse">
-        <div class="accordion-inner">
-          <%= f.text_field :name, class: "input-xlarge", placeholder: "Name" %><br>
-          <%= f.text_field :tel, class: "input-xlarge", placeholder: "Phone Number" %><br>
-          <%= f.text_field :org, class: "input-xlarge", placeholder: "Company/Org" %> 
-        </div>
-      </div>
-    </div>            
-  </div>
-  <div class="modal-footer">
-    <%= f.submit "Save", class: "btn btn-primary btn-large pull-left" %>
-    <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Cancel</button>    
-    <% end %>
-  </div>
-</div>

@@ -2,7 +2,6 @@ class ContactsController < ApplicationController
   def index
     @contact = Contact.new
     @contacts = get_connected_contacts(current_user)
-    @new_contacts = get_new_contacts(current_user)
   end
 
   def pendings
@@ -27,15 +26,15 @@ class ContactsController < ApplicationController
       redirect_to contacts_path
     elsif add_existing_invitee?(@contact, @invitee)
       flash[:notice] = "Contact exists in pending list"
-      redirect_to pendings_path
+      redirect_to contacts_path
       send_invitation(@contact)
     elsif add_new_contact(@contact, @invitee)
       flash[:success] = "New contact added"
-      redirect_to pendings_path
+      redirect_to contacts_path
       send_invitation(@contact)
     else
       flash[:error] = @contact.errors.full_messages[0]
-      redirect_to pendings_path
+      redirect_to contacts_path
     end
   end
 

@@ -3,7 +3,7 @@
 //Layouts
 
 body {
-  padding-top: 75px;
+  padding-top: 50px;
 }
 
 #logo {
@@ -13,22 +13,25 @@ body {
 
 //Flash messages
 
-.subnav_flash {
+.flash-message {
   position: absolute;
+  text-align: center;
+  width: 230px;
+  border: 2px solid;
+  border-radius: 8px;
+  font-weight: bold;
+  overflow: hidden;
 }
 
 #signup_flash {  
-  border: 2px solid;
-  width: 230px;
-}
-
-#login_flash {  
-  text-align: center;
-  border: 2px solid;
-  width: 230px;
+  text-align: left;
 }
 
 //Form & Table
+
+.signup-login {
+  margin-top: 50px;
+}
 
 .field_with_errors input {
   border: 1px solid #D00;
@@ -40,26 +43,34 @@ body {
 }
 
 .div-table {
-  font-size: 12px;
   border-radius: 5px;
   background-color: #dddddd;
-  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   border: 1px solid #cccccc;
 }
 
 .div-table-inner {
+  font-size: 12px;
+  padding-top: 10px;
   max-height: 450px;
   overflow: auto;
 }
 
 .div-table thead{
   color: white;
-  background-color: #4f81bd;
+  background-color: #08c;
   font-size: 14px;
 }
 
 #contacts_table{
   background-color: white;
+}
+
+.div-dropdown {
+  padding:10px;
 }
 
 .cursor-enable:hover {
@@ -76,16 +87,6 @@ body {
 
 //Subav
 
-#subnav_flash {  
-  text-align: center;
-  border: none;
-  border-radius: 10px;
-  width: 250px;
-}
-
-//Modal
-
-.dropdown-in-modal {
-  padding-left:10px;
-  padding-right:10px;
+#subnav {
+  margin-bottom: 5px;
 }

@@ -1,7 +1,9 @@
 <% provide(:title, 'Log in') %>
 <div class="row">
-  <div class= "span8 offset4">  	
-    <%= render 'sessions/login_flash' %>
+  <div class= "span8 offset4">
+  	<%= render 'sessions/login_flash' %>
+  </div>
+  <div class= "span8 offset4 signup-login">  	
     <%= render 'sessions/login_form' %>
     <P><h4>Or</h4></P>
     <%= link_to "New User ?", signup_path, class: "btn btn-success btn-large" %>

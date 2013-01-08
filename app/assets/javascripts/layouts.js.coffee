@@ -7,6 +7,4 @@ $ ->
     $('.flash-message').fadeOut(300)
 
   $('.tablesorter-header-inner i').removeClass()
-  $('#contacts_table').tablesorter({sortList: [[1,0]]})
-
-  $('#contactsUpdateModal').modal('show')
+  $('#contacts_table').tablesorter({sortList: [[0,0]]})

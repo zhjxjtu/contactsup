@@ -1,0 +1,44 @@
+<ul id="subnav" class="nav nav-pills">
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+      <i class="icon-plus"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <div class="div-dropdown">
+        <%= form_for @contact do |f| %>
+          <label><strong>Add New Contact</strong></label>
+          <%= f.hidden_field :inviter_id, value: current_user.id %>
+          <%= f.text_field :email, class: "input-large", placeholder: "Email" %>
+          <%= f.submit "Save", class: "btn btn-success pull-left" %><br><br><br>
+          <label>Optional Information</label>
+          <%= f.text_field :name, class: "input-large", placeholder: "Name" %>
+          <%= f.text_field :tel, class: "input-large", placeholder: "Phone Number" %>
+          <%= f.text_field :org, class: "input-large", placeholder: "Company/Org" %>       
+        <% end %>
+      </div>             
+    </ul>
+  </li>
+  <li class="dropdown pull-right">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+      <i class="icon-envelope"></i>
+      <small>(5)</small>
+    </a>
+    <ul class="dropdown-menu">
+      <div class="div-dropdown">
+        <a class="btn btn-primary">Test</a>
+      </div>             
+    </ul>
+  </li>
+  <div class="span4 offset3">
+    <% if flash.any? %>
+      <% flash.each do |key, value| %>
+        <div id="subnav_flash" class="flash-message alert alert-<%= key %>">
+          <button id="flash_close" class="close" type="button">
+            <small>&times;</small>
+          </button>
+          <%= value %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</ul>
