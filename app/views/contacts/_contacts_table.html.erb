@@ -1,4 +1,4 @@
-<% if @contacts.any? %>
+<% if @contacts.any? && @reverse_contacts.any? %>
   <div class="div-table">
     <div class="div-table-inner">
       <table id="contacts_table" class="table tablesorter table-bordered">
@@ -11,11 +11,14 @@
           </tr>
         </thead>
         <tbody>
+        <% if @contacts.any? %>
           <% @contacts.each do |contact| %>
             <% case contact.status %>
             <% when 100 .. 101 %>
-              <tr class="error">
-                <td><%= contact.name %></td>
+              <tr>
+                <td>
+                  <strong><%= contact.name %></strong>
+                </td>
                 <td><%= contact.org %></td>  
                 <td><%= contact.email %></td>
                 <td><%= contact.tel %></td>
@@ -23,13 +26,40 @@
             <% when 200 .. 211 %>
               <% user = User.find(contact.invitee_id) %>
                 <tr>
-                  <td><%= user.name %></td>
+                  <td><strong><%= user.name %></strong></td>
                   <td><%= user.org %></td>  
                   <td><%= user.email_pref %></td>
                   <td><%= user.tel_pref %></td>
                 </tr>
             <% end %>
           <% end %>
+        <% end %>
+
+        <% if @reverse_contacts.any? %>
+          <% @reverse_contacts.each do |contact| %>
+            <% case contact.status %>
+            <% when 100 .. 101 %>
+              <% user = User.find(contact.inviter_id) %>
+                <tr class="error">
+                  <td>
+                    <strong><%= user.name %></strong>
+                    <button class="btn btn-success btn-mini pull-right">Accept</button>
+                  </td>
+                  <td><%= user.org %></td>  
+                  <td><%= user.email_pref %></td>
+                  <td><%= user.tel_pref %></td>
+                </tr>
+            <% when 200 .. 211 %>
+              <% user = User.find(contact.inviter_id) %>
+                <tr>
+                  <td><strong><%= user.name %></strong></td>
+                  <td><%= user.org %></td>  
+                  <td><%= user.email_pref %></td>
+                  <td><%= user.tel_pref %></td>
+                </tr>
+            <% end %>
+          <% end %>
+        <% end %>
         </tbody>
       </table>
     </div>    

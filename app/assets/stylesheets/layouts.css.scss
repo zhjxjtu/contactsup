@@ -3,7 +3,7 @@
 //Layouts
 
 body {
-  padding-top: 50px;
+  padding-top: 55px;
 }
 
 #logo {
@@ -17,10 +17,10 @@ body {
   position: absolute;
   text-align: center;
   width: 230px;
-  border: 2px solid;
   border-radius: 8px;
-  font-weight: bold;
   overflow: hidden;
+  margin-left: 10px;
+  margin-bottom: 0px;
 }
 
 #signup_flash {  
@@ -55,7 +55,7 @@ body {
 .div-table-inner {
   font-size: 12px;
   padding-top: 10px;
-  max-height: 450px;
+  max-height: 550px;
   overflow: auto;
 }
 
@@ -67,10 +67,6 @@ body {
 
 #contacts_table{
   background-color: white;
-}
-
-.div-dropdown {
-  padding:10px;
 }
 
 .cursor-enable:hover {
@@ -88,5 +84,26 @@ body {
 //Subav
 
 #subnav {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+}
+
+//Dropdown
+
+.div-dropdown {
+  padding:10px;
+  padding-bottom: 5px; 
+}
+
+#incoming_contacts_dropdown {
+  width: 220px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.label-incoming-name {
+  color: white;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: #08c;
+  border-radius: 2px;
 }
