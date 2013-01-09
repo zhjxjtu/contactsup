@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108193454) do
+ActiveRecord::Schema.define(:version => 20130109175205) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "inviter_id"
@@ -61,6 +61,11 @@ ActiveRecord::Schema.define(:version => 20130108193454) do
     t.string   "tel_pref"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.string   "email_work"
+    t.string   "email_home"
+    t.string   "tel_cell"
+    t.string   "tel_work"
+    t.string   "tel_home"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

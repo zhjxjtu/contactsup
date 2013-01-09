@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, 
                   :token_s, :status, :token_u,
-                  :name, :org, :title, :email_pref, :tel_pref
+                  :name, :org, :title,
+                  :email_pref, :email_work, :email_home, 
+                  :tel_pref, :tel_cell, :tel_work, :tel_home
   has_secure_password
 
   has_many :contacts, foreign_key: "inviter_id", dependent: :destroy
