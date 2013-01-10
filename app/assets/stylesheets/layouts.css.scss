@@ -42,6 +42,18 @@ body {
   padding-left: 10px;
 }
 
+.form-horizontal .control-group {
+  margin-bottom: 5px;
+}
+
+.form-horizontal .control-label {
+  text-align: left;
+}
+
+#update_title {
+  margin-bottom: 20px;
+}
+
 .div-table {
   border-radius: 5px;
   background-color: #dddddd;
@@ -98,6 +110,10 @@ body {
   width: 220px;
   max-height: 300px;
   overflow: auto;
+}
+
+#profile_dropdown {
+  width: 320px;
 }
 
 .label-incoming-name {

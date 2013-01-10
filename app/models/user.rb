@@ -31,5 +31,5 @@ class User < ActiveRecord::Base
   	  self.token_s = SecureRandom.urlsafe_base64
       self.token_u = SecureRandom.urlsafe_base64
     end
-
+    
 end

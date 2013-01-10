@@ -16,10 +16,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
+  def edit
   end
 
   def update
+    @user = current_user
+    update_without_password(@user, params[:user])
+    flash[:success] = "Profile updated"
+    log_in(@user, "yes")
+    redirect_to contacts_path
   end
 
   def destroy

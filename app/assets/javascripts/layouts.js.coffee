@@ -1,6 +1,7 @@
 $ ->
 
   $("[rel=tooltip]").tooltip()
+  $("[rel=tooltip]").tooltip()
   $("[rel=popover]").popover()
 
   $('#flash_close').click ->

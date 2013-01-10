@@ -1,5 +1,20 @@
 module ApplicationHelper
 
+# Users related --------------------
+
+  def update_without_password(user, params)
+    user.update_attribute(:name, params[:name])
+    user.update_attribute(:org, params[:org])
+    user.update_attribute(:title, params[:title])
+    user.update_attribute(:email_pref, params[:email_pref])
+    user.update_attribute(:email_work, params[:email_work])
+    user.update_attribute(:email_home, params[:email_home])
+    user.update_attribute(:tel_pref, params[:tel_pref])
+    user.update_attribute(:tel_cell, params[:tel_cell])
+    user.update_attribute(:tel_work, params[:tel_work])
+    user.update_attribute(:tel_home, params[:tel_home])
+  end
+
 # Sessions related --------------------
 
   def log_in(user, stay)

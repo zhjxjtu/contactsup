@@ -9,8 +9,9 @@ Contactsup::Application.routes.draw do
   match '/logout', to: 'sessions#destroy', via: :delete
 
   # Users controller
-  resources :users, only: [:new, :create, :show, :update, :destroy]
+  resources :users, only: [:new, :create, :edit, :update, :destroy]
   match '/signup',  to: 'users#new', via: :get
+  match '/edit', to: 'users#edit', via: :get
   match '/forgot_password',  to: 'users#forgot_password', via: :post
   match '/reset_password',  to: 'users#reset_password_view', via: :get
   match '/reset_password',  to: 'users#reset_password', via: :put

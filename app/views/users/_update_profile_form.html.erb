@@ -1,0 +1,73 @@
+<%= form_for current_user, validate: true, html: {class: "form-horizontal"} do |f| %>
+  <p><h2 id="update_title">Update Profile</h2></p>
+  <p><h4><u>Primary information</u></h4>
+    <div class="control-group">
+      <label class="control-label">Name:</label>
+      <div class="controls">
+        <%= f.text_field :name,  placeholder: "Full Name" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Company/Org:</label>
+      <div class="controls">
+        <%= f.text_field :org,  placeholder: "Company/Org" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Title:</label>
+      <div class="controls">
+        <%= f.text_field :title,  placeholder: "Title" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Email:</label>
+      <div class="controls">
+        <%= f.text_field :email_pref,  placeholder: "Primary Email" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Phone:</label>
+      <div class="controls">
+        <%= f.text_field :tel_pref,  placeholder: "Primary number" %>
+      </div>
+    </div>
+  </p>
+  <p><h4><u>Other emails</u></h4>    
+    <div class="control-group">
+      <label class="control-label">Work:</label>
+      <div class="controls">
+        <%= f.text_field :email_work,  placeholder: "Work Email" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Personal:</label>
+      <div class="controls">
+        <%= f.text_field :email_home,  placeholder: "Personal Email" %>
+      </div>
+    </div>
+  </p>
+  <p><h4><u>Other phone numbers</u></h4>
+    <div class="control-group">
+      <label class="control-label">Mobile:</label>
+      <div class="controls">
+        <%= f.text_field :tel_cell,  placeholder: "Mobile number" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Work:</label>
+      <div class="controls">
+        <%= f.text_field :tel_work,  placeholder: "Work number" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Home:</label>
+      <div class="controls">
+        <%= f.text_field :tel_home,  placeholder: "Home number" %>
+      </div>
+    </div>
+  </p>
+  <p>
+    <%= f.submit "Save", class: "btn btn-large btn-success" %>
+  </p>
+
+<% end %>
