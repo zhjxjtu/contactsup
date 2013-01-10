@@ -6,10 +6,6 @@ class ContactsController < ApplicationController
     @incoming_contacts = @reverse_contacts.where(status: 101)
   end
 
-  def pendings
-    @contact = Contact.new
-  end
-
   def create
     unless @contact = Contact.find_by_inviter_id_and_email(params[:contact][:inviter_id], params[:contact][:email])
       @contact = Contact.new(params[:contact])
@@ -38,6 +34,16 @@ class ContactsController < ApplicationController
       flash[:error] = @contact.errors.full_messages[0]
       redirect_to contacts_path
     end
+  end
+
+  def accept
+    @contact = Contact.find_by_token(params[:token])
+    set_contact_status(@contact, 201)
+  end
+
+  def ignore
+    @contact = Contact.find_by_token(params[:token])
+    set_contact_status(@contact, 100)
   end
 
   def accept_signup_view
@@ -95,6 +101,11 @@ class ContactsController < ApplicationController
       flash[:error] = 'Invalid Email or Password'
       redirect_to accept_login_path + "?token=" + @contact.token
     end
+  end
+
+  def remind
+    @contact = Contact.find_by_token(params[:token])
+    set_contact_status(@contact, 101)
   end
 
   def block

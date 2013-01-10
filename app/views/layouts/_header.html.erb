@@ -17,20 +17,21 @@
                   </li>
                   <li class="divider"></li>
                   <li>
-                    Commpay/Org: <%= current_user.org%><br>
-                    Title: <%= current_user.title %><br>
+                    <u>Primary information</u>:<br>
+                    &nbsp;&nbsp;Commpay/Org: <%= current_user.org%><br>
+                    &nbsp;&nbsp;Title: <%= current_user.title %><br>
+                    &nbsp;&nbsp;Email: <%= current_user.email_pref %><br>
+                    &nbsp;&nbsp;Phone: <%= current_user.tel_pref %><br>
                   </li>
                   <li class="divider"></li>
                   <li>
-                    <u>Email</u>:<br>
-                    &nbsp;&nbsp;Primary: <%= current_user.email_pref %><br>
+                    <u>Other emails</u>:<br>
                     &nbsp;&nbsp;Work: <%= current_user.email_work %><br>
                     &nbsp;&nbsp;Home: <%= current_user.email_home %>
                   </li>
                   <li class="divider"></li>
                   <li>
-                    <u>Phone</u>:<br>
-                    &nbsp;&nbsp;Primary: <%= current_user.tel_pref %><br>
+                    <u>Other phone numbers</u>:<br>
                     &nbsp;&nbsp;Cell: <%= current_user.tel_cell %><br>
                     &nbsp;&nbsp;Work: <%= current_user.tel_work %><br>
                     &nbsp;&nbsp;Home: <%= current_user.tel_home %>

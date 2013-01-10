@@ -4,6 +4,7 @@
       <table id="contacts_table" class="table tablesorter table-bordered">
         <thead>
           <tr>
+            <th class="table-column-hide">Priority</th>
             <th class="cursor-enable">Name</th>
             <th class="cursor-enable">Company/Org</th>
             <th class="cursor-enable">Email</th>
@@ -15,22 +16,76 @@
           <% @contacts.each do |contact| %>
             <% case contact.status %>
             <% when 100 .. 101 %>
-              <tr>
-                <td>
-                  <strong><%= contact.name %></strong>
-                </td>
+              <tr class="error">
+                <td class="table-column-hide">3</td>
+                <td><strong><%= contact.name %></strong></td>
                 <td><%= contact.org %></td>  
-                <td><%= contact.email %></td>
+                <td>
+                  <%= contact.email %>
+                  <%= link_to "Remind", remind_path + "?token=#{contact.token}", method: "put", remote: true, class: "btn btn-mini btn-warning btn-remind pull-right" %>              
+                </td>
                 <td><%= contact.tel %></td>
               </tr>
             <% when 200 .. 211 %>
               <% user = User.find(contact.invitee_id) %>
-                <tr>
-                  <td><strong><%= user.name %></strong></td>
-                  <td><%= user.org %></td>  
-                  <td><%= user.email_pref %></td>
-                  <td><%= user.tel_pref %></td>
-                </tr>
+              <tr>
+                <td class="table-column-hide">2</td>
+                <td>
+                  <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+                      <strong><%= user.name %></strong>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <div class="div-dropdown">
+                        <li>
+                          <a herf="#">
+                            vCard <i class="icon-download"></i>
+                          </a>
+                        </li>
+                      </div>
+                    </ul>
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+                      <%= user.org %>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <div class="div-dropdown">
+                        <li>Title: <%= user.title %></li>
+                      </div>
+                    </ul>
+                  </div>
+                </td>  
+                <td>
+                  <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+                      <%= user.email_pref %>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <div class="div-dropdown">
+                        <li>Work: <%= user.email_work %></li>
+                        <li>Personal: <%= user.email_home %></li>
+                      </div>
+                    </ul>
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+                      <%= user.tel_pref %>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <div class="div-dropdown">
+                        <li>Cell: <%= user.tel_cell %></li>
+                        <li>Work: <%= user.tel_work %></li>
+                        <li>Home: <%= user.tel_home %></li>
+                      </div>
+                    </ul>
+                  </div>                    
+                </td>
+              </tr>
             <% end %>
           <% end %>
         <% end %>
@@ -38,25 +93,81 @@
         <% if @reverse_contacts.any? %>
           <% @reverse_contacts.each do |contact| %>
             <% case contact.status %>
-            <% when 100 .. 101 %>
+            <% when 101 %>
               <% user = User.find(contact.inviter_id) %>
-                <tr class="error">
-                  <td>
-                    <strong><%= user.name %></strong>
-                    <button class="btn btn-success btn-mini pull-right">Accept</button>
-                  </td>
-                  <td><%= user.org %></td>  
-                  <td><%= user.email_pref %></td>
-                  <td><%= user.tel_pref %></td>
-                </tr>
+              <tr class="info">
+                <td class="table-column-hide">1</td>
+                <td>
+                  <strong><%= user.name %></strong>
+                  <div class="btn-group pull-right">
+                    <%= link_to "Accept", accept_path + "?token=#{contact.token}", method: "put", remote: true, class: "btn btn-mini btn-success btn-accept" %>
+                    <%= link_to "Ignore", ignore_path + "?token=#{contact.token}", method: "put", remote: true, class: "btn btn-mini btn-ignore" %>
+                  </div>   
+                </td>
+                <td><%= user.org %></td>  
+                <td><%= user.email_pref %></td>
+                <td><%= user.tel_pref %></td>
+              </tr>
             <% when 200 .. 211 %>
               <% user = User.find(contact.inviter_id) %>
-                <tr>
-                  <td><strong><%= user.name %></strong></td>
-                  <td><%= user.org %></td>  
-                  <td><%= user.email_pref %></td>
-                  <td><%= user.tel_pref %></td>
-                </tr>
+              <tr>
+                <td class="table-column-hide">2</td>
+                <td>
+                  <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+                      <strong><%= user.name %></strong>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <div class="div-dropdown">
+                        <li>
+                          <a herf="#">
+                            vCard <i class="icon-download"></i>
+                          </a>
+                        </li>
+                      </div>
+                    </ul>
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+                      <%= user.org %>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <div class="div-dropdown">
+                        <li>Title: <%= user.title %></li>
+                      </div>
+                    </ul>
+                  </div>
+                </td>  
+                <td>
+                  <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+                      <%= user.email_pref %>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <div class="div-dropdown">
+                        <li>Work: <%= user.email_work %></li>
+                        <li>Personal: <%= user.email_home %></li>
+                      </div>
+                    </ul>
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
+                      <%= user.tel_pref %>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <div class="div-dropdown">
+                        <li>Cell: <%= user.tel_cell %></li>
+                        <li>Work: <%= user.tel_work %></li>
+                        <li>Home: <%= user.tel_home %></li>
+                      </div>
+                    </ul>
+                  </div>                    
+                </td>
+              </tr>
             <% end %>
           <% end %>
         <% end %>

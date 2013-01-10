@@ -19,12 +19,14 @@ Contactsup::Application.routes.draw do
 
   # Contacts controller
   resources :contacts, only: [:index, :create]
-  match '/pendings',  to: 'contacts#pendings', via: :get
+  match '/accept',  to: 'contacts#accept', via: :put
   match '/accept_signup', to: 'contacts#accept_signup_view', via: :get
   match '/accept_signup', to: 'contacts#accept_signup', via: :post
   match '/accept_login', to: 'contacts#accept_login_view', via: :get
   match '/accept_login', to: 'contacts#accept_login', via: :post
-  match '/block_contact', to: 'contacts#block', via: :post
-  match '/unblock_contact', to: 'contacts#unblock', via: :delete
+  match '/ignore',  to: 'contacts#ignore', via: :put
+  match '/remind',  to: 'contacts#remind', via: :put
+  match '/block', to: 'contacts#block', via: :post
+  match '/unblock', to: 'contacts#unblock', via: :delete
 
 end
