@@ -4,7 +4,7 @@
       <table id="contacts_table" class="table tablesorter table-bordered">
         <thead>
           <tr>
-            <th class="table-column-hide">Priority</th>
+            <th class="td-hide">Priority</th>
             <th class="cursor-enable">Name</th>
             <th class="cursor-enable">Company/Org</th>
             <th class="cursor-enable">Email</th>
@@ -17,7 +17,7 @@
             <% case contact.status %>
             <% when 100 .. 101 %>
               <tr class="error">
-                <td class="table-column-hide">3</td>
+                <td class="td-hide">}</td>
                 <td><strong><%= contact.name %></strong></td>
                 <td><%= contact.org %></td>  
                 <td>
@@ -29,7 +29,7 @@
             <% when 200 .. 211 %>
               <% user = User.find(contact.invitee_id) %>
               <tr>
-                <td class="table-column-hide">2</td>
+                <td class="td-hide">|</td>
                 <td>
                   <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
@@ -96,7 +96,7 @@
             <% when 101 %>
               <% user = User.find(contact.inviter_id) %>
               <tr class="info">
-                <td class="table-column-hide">1</td>
+                <td class="td-hide">{</td>
                 <td>
                   <strong><%= user.name %></strong>
                   <div class="btn-group pull-right">
@@ -111,7 +111,7 @@
             <% when 200 .. 211 %>
               <% user = User.find(contact.inviter_id) %>
               <tr>
-                <td class="table-column-hide">2</td>
+                <td class="td-hide">|</td>
                 <td>
                   <div class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
