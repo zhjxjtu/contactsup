@@ -1,0 +1,5 @@
+<p>Dear <%= @user.name %>,</p>
+<p>We noticed you submitted a request to reset your password, please click the link below</p>
+<p><%= reset_password_url %>?token=<%= @user.token_u %></p>
+<br>
+<p>ContactsUp Team</p>

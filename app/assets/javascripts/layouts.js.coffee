@@ -26,6 +26,6 @@ $ ->
       else
         $('#contacts_table tbody tr').each ->
           if $(this).text().search(new RegExp(kword, "i")) <= 0
-            $(this).fadeOut()
+            $(this).fadeOut(100)
           else
-            $(this).fadeIn()
+            $(this).fadeIn(100)

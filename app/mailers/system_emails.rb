@@ -5,4 +5,9 @@ class SystemEmails < ActionMailer::Base
     mail to: @contact.email, from: @contact.inviter.name, subject: "#{@contact.inviter.name}'s contact information"
   end
 
+  def reset(user)
+  	@user = user
+  	mail to: @user.email, from: "ContactsUp", subject: "Reset your ContactsUp password"
+  end
+
 end

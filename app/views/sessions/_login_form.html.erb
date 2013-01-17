@@ -8,12 +8,30 @@
   </p>
   <p>
     <label class="checkbox">
-    	<%= f.check_box :stay, { checked: true }, "yes", "no" %>
-    	<small>Keep me logged in &nbsp;&nbsp;|&nbsp;&nbsp;</small>
-      <small><%= link_to "Forgot password?", '#' %></small>
+      <%= f.check_box :stay, { checked: true }, "yes", "no" %>
+      <small>Keep me logged in &nbsp;&nbsp;|&nbsp;&nbsp;</small>
+      <small>
+        <a href="#forgot_modal" data-toggle="modal">Forgot Password?</a>
+      </small>
     </label>
   </p>
   <p>
     <%= f.submit "Log in", class: "btn btn-primary btn-large" %>
   </p>
 <% end %>
+
+<div id="forgot_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="forgot_modal_label" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 id="forgot_modal_label">Your will receive the link to reset your password</h4>
+  </div>
+  <div class="modal-body">
+    <%= form_for @user, url: forgot_password_path do |f| %>
+      <%= f.text_field :email, placeholder: "Email" %>
+  </div>
+  <div class="modal-footer">
+      <%= f.submit "Confirm", class: "btn btn-primary pull-left" %>
+    <% end %>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>

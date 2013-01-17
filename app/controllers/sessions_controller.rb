@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @user = User.new
   end
 
   def create
@@ -8,8 +9,8 @@ class SessionsController < ApplicationController
   	  log_in(@user, params[:stay])
 	    redirect_to contacts_path
 	  else
-	    flash.now[:error] = 'Invalid Email or Password'
-	    render 'new'
+	    flash[:error] = 'Invalid Email or Password'
+	    redirect_to login_path
 	  end
   end
 

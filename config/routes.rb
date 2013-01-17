@@ -29,4 +29,4 @@ Contactsup::Application.routes.draw do
   match '/block', to: 'contacts#block', via: :post
   match '/unblock', to: 'contacts#unblock', via: :delete
 
-end
+end 

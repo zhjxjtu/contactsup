@@ -42,7 +42,7 @@
                 </div>
               </ul>
             </li>
-            <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+            <li><%= link_to "Log out", logout_path, method: "delete", tabindex: "-1" %></li>
           <% else %>       
             <li><%= link_to "Log in", login_path, tabindex: "-1" %></li>          
           <% end %>    
