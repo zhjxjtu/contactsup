@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+
+  before_filter :unlogged_in_user, only: [:new]
+  before_filter :logged_in_user, only: [:destroy]
+
   def new
     @user = User.new
   end

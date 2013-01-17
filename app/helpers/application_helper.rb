@@ -1,5 +1,22 @@
 module ApplicationHelper
 
+# All before_filters
+  
+  def unlogged_in_user
+    redirect_to contacts_path unless current_user.nil?
+  end
+  
+  def logged_in_user
+    unless logged_in?
+      flash[:notice] = "Please log in."
+      redirect_to login_path
+    end
+  end
+
+  def self_user
+    redirect_to(root_path) unless User.find(params[:id]) == current_user
+  end
+
 # Users related --------------------
 
   def update_without_password(user, params)

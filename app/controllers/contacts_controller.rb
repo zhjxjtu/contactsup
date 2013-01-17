@@ -1,4 +1,7 @@
 class ContactsController < ApplicationController
+
+  before_filter :logged_in_user, only: [:index, :create, :accept, :ignore, :remind]
+
   def index
     @contact = Contact.new
     @contacts = current_user.contacts
@@ -38,7 +41,7 @@ class ContactsController < ApplicationController
 
   def accept
     @contact = Contact.find_by_token(params[:token])
-    set_contact_status(@contact, 201)
+    set_contact_status(@contact, 200)
   end
 
   def ignore
@@ -54,7 +57,7 @@ class ContactsController < ApplicationController
       redirect_to root_path
     elsif logged_in?
       if current_user.id == @contact.invitee_id
-        set_contact_status(@contact, 201)
+        set_contact_status(@contact, 200)
         flash[:success] = "Connected with " + @contact.inviter.name
         redirect_to contacts_path
       else
@@ -72,7 +75,7 @@ class ContactsController < ApplicationController
     if @user.save
       fill_existing_contacts(@user)
       log_in(@user, params[:page][:stay])
-      set_contact_status(@contact, 201)
+      set_contact_status(@contact, 200)
       flash[:success] = "New contact connected"
       redirect_to contacts_path
     else
@@ -94,7 +97,7 @@ class ContactsController < ApplicationController
     @contact = Contact.find_by_token(params[:page][:token])
     if @user && @user.authenticate(params[:session][:password])
       log_in(@user, params[:stay])
-      set_contact_status(@contact, 201)
+      set_contact_status(@contact, 200)
       flash[:success] = 'New contact connected'
       redirect_to contacts_path
     else
@@ -108,9 +111,12 @@ class ContactsController < ApplicationController
     set_contact_status(@contact, 101)
   end
 
+=begin
   def block
   end
 
   def unblock
   end
+=end
+
 end

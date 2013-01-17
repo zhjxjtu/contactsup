@@ -9,7 +9,7 @@ Contactsup::Application.routes.draw do
   match '/logout', to: 'sessions#destroy', via: :delete
 
   # Users controller
-  resources :users, only: [:new, :create, :edit, :update, :destroy]
+  resources :users, only: [:new, :create, :edit, :update]
   match '/signup',  to: 'users#new', via: :get
   match '/edit', to: 'users#edit', via: :get
   match '/forgot_password',  to: 'users#forgot_password', via: :post
@@ -26,7 +26,7 @@ Contactsup::Application.routes.draw do
   match '/accept_login', to: 'contacts#accept_login', via: :post
   match '/ignore',  to: 'contacts#ignore', via: :put
   match '/remind',  to: 'contacts#remind', via: :put
-  match '/block', to: 'contacts#block', via: :post
-  match '/unblock', to: 'contacts#unblock', via: :delete
+  #match '/block', to: 'contacts#block', via: :post
+  #match '/unblock', to: 'contacts#unblock', via: :delete
 
 end 

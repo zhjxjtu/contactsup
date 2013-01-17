@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+  before_filter :logged_in_user, only: [:edit, :update, :update_password]
+  before_filter :self_user, only: [:edit, :update, :update_password]
+
   def new
     @user = User.new
   end
@@ -25,9 +29,6 @@ class UsersController < ApplicationController
     flash[:success] = "Profile updated"
     log_in(@user, "yes")
     redirect_to contacts_path
-  end
-
-  def destroy
   end
 
   def forgot_password
