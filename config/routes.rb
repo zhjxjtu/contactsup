@@ -15,7 +15,7 @@ Contactsup::Application.routes.draw do
   match '/forgot_password',  to: 'users#forgot_password', via: :post
   match '/reset_password',  to: 'users#reset_password_view', via: :get
   match '/reset_password',  to: 'users#reset_password', via: :put
-  match '/update_password',  to: 'users#update_password', via: :put
+  #match '/update_password',  to: 'users#update_password', via: :put
 
   # Contacts controller
   resources :contacts, only: [:index, :create]

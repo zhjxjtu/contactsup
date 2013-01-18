@@ -3,7 +3,7 @@
   <label><h5>to send <%= @contact.inviter.name %> your information</h5></label>
   <br>
   <%= hidden_field :page, :token, value: params[:token] %>
-  <%= f.text_field :email, class: "input-xlarge", placeholder: "Email", value: @contact.email %>
+  <%= f.text_field :email, class: "input-xlarge", placeholder: "Email", value: @contact.email , autofocus: true %>
   <%= f.password_field :password, class: "input-xlarge", placeholder: "Password" %>
   <br>
   <label class="checkbox">

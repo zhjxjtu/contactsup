@@ -1,7 +1,7 @@
 <%= form_for :session, url: sessions_path, html: {class: "form-inline"} do |f| %>
   <label><h2>Log in</h2></label>
   <p>
-    <%= f.text_field :email, class: "input-xlarge", placeholder: "Email" %>
+    <%= f.text_field :email, class: "input-xlarge", placeholder: "Email", autofocus: true %>
   </p>
   <p>
     <%= f.password_field :password, class: "input-xlarge", placeholder: "Password" %>

@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   before_filter :logged_in_user, only: [:edit, :update, :update_password]
-  before_filter :self_user, only: [:edit, :update, :update_password]
 
   def new
     @user = User.new
@@ -43,8 +42,6 @@ class UsersController < ApplicationController
     redirect_to login_path
   end
 
-  def update_password
-  end
 
   def reset_password_view
     unless @user = User.find_by_token_u(params[:token])
@@ -63,5 +60,10 @@ class UsersController < ApplicationController
       redirect_to reset_password_path + "?account_token=#{@user.account_token}"
     end
   end
+
+=begin
+  def update_password
+  end
+=end
 
 end

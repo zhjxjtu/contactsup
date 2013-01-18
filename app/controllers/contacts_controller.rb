@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
 
   before_filter :logged_in_user, only: [:index, :create, :accept, :ignore, :remind]
+  before_filter :self_user, only: [:create]
 
   def index
     @contact = Contact.new
@@ -14,10 +15,23 @@ class ContactsController < ApplicationController
       @contact = Contact.new(params[:contact])
       @contact.email = @contact.email.downcase
     end
-    @invitee = User.find_by_email(@contact.email)
+    if @invitee = User.find_by_email(@contact.email)
+      @reverse_contact = Contact.find_by_inviter_id_and_invitee_id(params[:contact][:inviter_id], params[:contact][:email])
+=begin 
     if add_self?(@contact.email)
       flash[:error] = "Can't add yourself"
-      redirect_to contacts_path    
+      redirect_to contacts_path
+    elsif @contact.id.blank?
+      @contact.invitee_id = invitee.id unless !@invitee.nil?
+      @contact.save
+      flash[:success] = "New contact added"
+      redirect_to contacts_path
+      send_invitation(@contact)
+    elsif @contact.status >= 200
+=end
+
+
+
     elsif add_connected_contact?(@invitee)
       flash[:notice] = "Contact exists"
       redirect_to contacts_path
@@ -37,6 +51,7 @@ class ContactsController < ApplicationController
       flash[:error] = @contact.errors.full_messages[0]
       redirect_to contacts_path
     end
+
   end
 
   def accept

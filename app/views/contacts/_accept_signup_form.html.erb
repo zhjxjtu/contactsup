@@ -4,7 +4,7 @@
   <small><%= link_to "ContactsUp user? Log in to send information", "#{accept_login_path}?token=#{@contact.token}" %></small>
   <br><br>
   <%= hidden_field :page, :token, value: params[:token] %>
-  <%= f.text_field :email, class: "input-xlarge", placeholder: "Email (Required)", value: @contact.email %>
+  <%= f.text_field :email, class: "input-xlarge", placeholder: "Email (Required)", value: @contact.email, autofocus: true %>
   <%= f.text_field :name, class: "input-xlarge", placeholder: "Full Name (Required)" %>
   <%= f.text_field :tel_pref, class: "input-xlarge", placeholder: "Primary phone number" %>
   <%= f.text_field :org, class: "input-xlarge", placeholder: "Company / Orgnization" %>

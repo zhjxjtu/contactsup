@@ -1,7 +1,7 @@
 <%= form_for @user, url: '/users', html: {class: "form-inline"}, validate: true do |f| %>
   <label><h2>Sign up</h2></label>
   <p>
-    <%= f.text_field :email, class: "input-xlarge", placeholder: "Email" %>
+    <%= f.text_field :email, class: "input-xlarge", placeholder: "Email", autofocus: true %>
   </p>
   <p>
     <%= f.text_field :name, class: "input-xlarge", placeholder: "Full Name" %>

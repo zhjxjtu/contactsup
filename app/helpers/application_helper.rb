@@ -63,7 +63,7 @@ module ApplicationHelper
 # Contacts related --------------------
 
   def add_self?(email)
-    email == current_user.email
+    email == current_user.email || email == current_user.email_pref || email == current_user.email_work || email == current_user.email_home
   end
 
   def add_connected_contact?(invitee)
