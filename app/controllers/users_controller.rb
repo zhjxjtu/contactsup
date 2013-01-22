@@ -34,8 +34,8 @@ class UsersController < ApplicationController
     @user = User.find_by_email(params[:user][:email])
     if !@user.nil?
       flash[:success] = "An reset email sent to #{params[:user][:email]}"
-      SystemEmails.delay.reset(@user)
-      #SystemEmails.reset(@user).deliver
+      #SystemEmails.delay.reset(@user)
+      SystemEmails.reset(@user).deliver
     else
       flash[:error] = "Invalid or wrong email"
     end

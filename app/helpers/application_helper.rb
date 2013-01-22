@@ -97,8 +97,8 @@ module ApplicationHelper
   end
 
   def send_invitation(contact)
-    SystemEmails.delay.invite(contact)
-    # No Delayed jobs: SystemEmails.invite(contact).deliver
+    #SystemEmails.delay.invite(contact)
+    SystemEmails.invite(contact).deliver
   end
 
   def fill_existing_contacts(user)
