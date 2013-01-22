@@ -97,7 +97,7 @@ module ApplicationHelper
   end
 
   def send_invitation(contact)
-    #SystemEmails.delay.invite(contact)
+    # SystemEmails.delay.invite(contact)
     SystemEmails.invite(contact).deliver
   end
 
