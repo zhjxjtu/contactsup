@@ -12,6 +12,7 @@ Contactsup::Application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
   match '/signup',  to: 'users#new', via: :get
   match '/edit', to: 'users#edit', via: :get
+  match '/forgot_password',  to: 'users#forgot_password_view', via: :get
   match '/forgot_password',  to: 'users#forgot_password', via: :post
   match '/reset_password',  to: 'users#reset_password_view', via: :get
   match '/reset_password',  to: 'users#reset_password', via: :put

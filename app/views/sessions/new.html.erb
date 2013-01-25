@@ -1,11 +1,33 @@
 <% provide(:title, 'Log in') %>
-<div class="row">
-  <div class= "span8 offset4">
-  	<%= render 'sessions/login_flash' %>
-  </div>
-  <div class= "span8 offset4 signup-login">  	
-    <%= render 'sessions/login_form' %>
-    <P><h4>Or</h4></P>
-    <%= link_to "New User ?", signup_path, class: "btn btn-success btn-large" %>
+<div id="box_login">
+  <div class="container">
+  	<div class="span12 box_wrapper">
+  	  <div class="span12 box">
+  	  	<div>
+  	  	  <div class="head">
+  	  	    <h4>Log in to your account</h4>
+  	  	  </div>
+  	    </div>
+		<div class="form">
+		  <%= form_for :session, url: sessions_path do |f| %>
+		  	<%= f.text_field :email, placeholder: "Email", autofocus: true %>
+		  	<%= f.password_field :password, placeholder: "Password" %>
+		  	<div class="remember">
+		  	  <div class="left">
+		  	  	<%= check_box("page", "stay", { checked: true }, "yes", "no") %>
+		  	  	<label>Stay logged in</label>
+		  	  </div>
+		  	  <div class="right">		  	  	
+		  	  	<%= link_to "Forgot password?", forgot_password_path %>
+		  	  </div>
+		  	</div>
+		  	<%= f.submit "Log in", class: "btn" %>
+		  <% end %>
+		</div>
+	  </div>
+	  <p class="already">Don't have an account? 
+	  	<%= link_to "Sign up", signup_path %>
+	  </p>
+	</div>
   </div>
 </div>

@@ -2,9 +2,7 @@
 
 //Layouts
 
-body {
-  padding-top: 55px;
-}
+
 
 #logo {
   padding-top: 7px;
@@ -33,13 +31,15 @@ body {
   margin-top: 50px;
 }
 
-.field_with_errors input {
-  border: 1px solid #D00;
+#box_sign .box .form .field_with_errors input[type="text"],
+#box_sign .box .form .field_with_errors input[type="password"] {
+  border-color:  #D00;
 }
 
 .field_with_errors .message{ 
   color: #D00;
   padding-left: 10px;
+  text-align: left;
 }
 
 .form-horizontal .control-group {

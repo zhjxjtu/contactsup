@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       fill_existing_contacts(@user)
-      log_in(@user, params[:page][:stay])
+      log_in(@user, "yes")
       flash[:success] = "Welcome to ContactsUp!"
       redirect_to contacts_path
     else
@@ -28,6 +28,10 @@ class UsersController < ApplicationController
     flash[:success] = "Profile updated"
     log_in(@user, "yes")
     redirect_to contacts_path
+  end
+
+  def forgot_password_view
+    @user = User.new
   end
 
   def forgot_password
