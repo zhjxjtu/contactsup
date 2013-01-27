@@ -8,7 +8,7 @@
   	  	  	<h4>Create your account</h4>
   	  	  </div>
   	  	  <div class="form">
-  	  	  	<%= form_for @user, url: '/users', validate: true do |f| %>
+  	  	  	<%= form_for @user, url: '/users' do |f| %>
   	  	  	  <%= f.text_field :email, placeholder: "Email" %>
   	  	  	  <%= f.text_field :name,  placeholder: "Full Name" %>
   	  	  	  <%= f.password_field :password, placeholder: "Password" %> 
