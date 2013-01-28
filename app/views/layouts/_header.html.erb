@@ -13,8 +13,12 @@
       <%= link_to image_tag("logo.png", alt: "logo"), root_path, class: "brand", tabindex: "-1" %>
       <div class="nav-collapse collapse">
         <ul class="nav pull-right">
+          <% if logged_in? %>
+          <li><%= link_to "log out", logout_path, class: "btn-header", method: "delete", tabindex: "-1" %></li>
+          <% else %>
           <li><%= link_to "Sign up", signup_path, class: "btn-header" %></li>
           <li><%= link_to "Log in", login_path, class: "btn-header" %></li>
+          <% end %>
         </ul>
       </div>
     </div>

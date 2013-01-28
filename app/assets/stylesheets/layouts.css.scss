@@ -3,27 +3,7 @@
 //Layouts
 
 
-
-#logo {
-  padding-top: 7px;
-  height: 28px;
-}
-
 //Flash messages
-
-.flash-message {
-  position: absolute;
-  text-align: center;
-  width: 230px;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-left: 10px;
-  margin-bottom: 0px;
-}
-
-#signup_flash {  
-  text-align: left;
-}
 
 //Form & Table
 
@@ -42,16 +22,13 @@
   text-align: left;
 }
 
-.form-horizontal .control-group {
-  margin-bottom: 5px;
-}
-
-.form-horizontal .control-label {
-  text-align: left;
-}
 
 #update_title {
   margin-bottom: 20px;
+}
+
+#contacts_wrapper {
+  margin: 50px;
 }
 
 .div-table {
@@ -67,7 +44,6 @@
 .div-table-inner {
   font-size: 12px;
   padding-top: 10px;
-  max-height: 550px;
   overflow: auto;
 }
 
@@ -123,6 +99,8 @@
   background-color: #08c;
   border-radius: 2px;
 }
+
+// Customization to measure
 
 #testimonials .phrases_wrapper .phrase p.testimony {
   width: 100%;
