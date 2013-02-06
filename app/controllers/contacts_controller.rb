@@ -1,12 +1,12 @@
 class ContactsController < ApplicationController
 
-  before_filter :logged_in_user, only: [:index, :create, :accept, :ignore, :remind]
+  before_filter :logged_in_user, only: [:create, :accept, :ignore, :remind]
 
   def index
-    @contact = Contact.new
-    @contacts = current_user.contacts
-    @reverse_contacts = current_user.reverse_contacts
-    @incoming_contacts = @reverse_contacts.where(status: 101)
+    #@contact = Contact.new
+    #@contacts = current_user.contacts
+    #@reverse_contacts = current_user.reverse_contacts
+    #@incoming_contacts = @reverse_contacts.where(status: 101)
   end
 
   def create

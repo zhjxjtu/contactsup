@@ -4,5 +4,6 @@ class WebpagesController < ApplicationController
 
   def landing
   	@user = User.new
+  	redirect_to contacts_path
   end
 end
